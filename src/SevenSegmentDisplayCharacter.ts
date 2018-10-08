@@ -1,7 +1,5 @@
 export interface PrintableCharacter {
-    lineOne(): string;
-    lineTwo(): string;
-    lineThree(): string;
+    line(lineNumber: number): string;
     print(): void;
     asciiCharacter(): string;
 }
@@ -17,7 +15,7 @@ export class DisplayCharacter implements PrintableCharacter {
     ]
 
     constructor(asciiCharacter: string, printString: string) {
-        if(asciiCharacter.length !== 1){
+        if (asciiCharacter.length !== 1) {
             throw new Error(`asciiCharacter '${asciiCharacter}' is not 1 character`);
         }
         this._asciiCharacter = asciiCharacter;
@@ -26,14 +24,14 @@ export class DisplayCharacter implements PrintableCharacter {
         let initialisedLines = 0;
 
         printString.split('\r\n').forEach((line, index) => {
-            if(this._lineRegex[index+1].test(line) === false){
-                throw new Error(`Line ${index+1} is not valid for ${asciiCharacter}`);
+            if (this._lineRegex[index + 1].test(line) === false) {
+                throw new Error(`Line ${index + 1} is not valid for ${asciiCharacter}`);
             }
-            this._lines[index+1] = line;
+            this._lines[index + 1] = line;
             initialisedLines++;
         });
 
-        if(initialisedLines !== 3){
+        if (initialisedLines !== 3) {
             throw new Error(`Invalid printString: must contain 3 lines, contained ${initialisedLines}`);
         }
     }
@@ -43,16 +41,15 @@ export class DisplayCharacter implements PrintableCharacter {
             console.log(line);
         });
     }
-    asciiCharacter(): string{
+
+    asciiCharacter(): string {
         return this._asciiCharacter;
     }
-    lineOne(): string {
-        return this._lines[1];
-    }
-    lineTwo(): string {
-        return this._lines[2];
-    }
-    lineThree(): string {
-        return this._lines[3];
+
+    line(lineNumber: number): string {
+        if (lineNumber < 1 || lineNumber > 3) {
+            throw new Error('Line number must be between 1 and 3 inclusive');
+        }
+        return this._lines[lineNumber];
     }
 }

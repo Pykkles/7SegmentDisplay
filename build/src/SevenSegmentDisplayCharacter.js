@@ -33,14 +33,11 @@ class DisplayCharacter {
     asciiCharacter() {
         return this._asciiCharacter;
     }
-    lineOne() {
-        return this._lines[1];
-    }
-    lineTwo() {
-        return this._lines[2];
-    }
-    lineThree() {
-        return this._lines[3];
+    line(lineNumber) {
+        if (lineNumber < 1 || lineNumber > 3) {
+            throw new Error('Line number must be between 1 and 3 inclusive');
+        }
+        return this._lines[lineNumber];
     }
 }
 exports.DisplayCharacter = DisplayCharacter;

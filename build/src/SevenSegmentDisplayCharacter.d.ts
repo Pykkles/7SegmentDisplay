@@ -1,7 +1,5 @@
 export interface PrintableCharacter {
-    lineOne(): string;
-    lineTwo(): string;
-    lineThree(): string;
+    line(lineNumber: number): string;
     print(): void;
     asciiCharacter(): string;
 }
@@ -12,7 +10,5 @@ export declare class DisplayCharacter implements PrintableCharacter {
     constructor(asciiCharacter: string, printString: string);
     print(): void;
     asciiCharacter(): string;
-    lineOne(): string;
-    lineTwo(): string;
-    lineThree(): string;
+    line(lineNumber: number): string;
 }

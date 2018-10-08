@@ -1,120 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const CharacterSets_1 = require("./CharacterSets");
+const CharacterSet_1 = require("./CharacterSet");
+const Word_1 = require("./Word");
 console.log('main');
-// let printableCharacters: {[character: string] : PrintableCharacter} = {};
-// let ambiguousCharacters: {[character: string] : PrintableCharacter} = {};
-// printableCharacters['a'] = new DisplayCharacter('a', ' _ ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '| |');
-// printableCharacters['b'] = new DisplayCharacter('b', '   ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['c'] = new DisplayCharacter('c', '   ' + '\r\n' + 
-//                                                      ' _ ' + '\r\n' + 
-//                                                      '|_ ');
-// printableCharacters['d'] = new DisplayCharacter('d', '   ' + '\r\n' + 
-//                                                      ' _|' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['e'] = new DisplayCharacter('e', ' _ ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      '|_ ');
-// printableCharacters['f'] = new DisplayCharacter('f', ' _ ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      '|  ');
-// printableCharacters['g'] = new DisplayCharacter('g', ' _ ' + '\r\n' + 
-//                                                      '|  ' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['h'] = new DisplayCharacter('h', '   ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '| |');
-// printableCharacters['i'] = new DisplayCharacter('i', '   ' + '\r\n' + 
-//                                                      '|  ' + '\r\n' + 
-//                                                      '|  ');
-// printableCharacters['j'] = new DisplayCharacter('j', '   ' + '\r\n' + 
-//                                                      '  |' + '\r\n' + 
-//                                                      '|_|');
-// ambiguousCharacters['k'] = new DisplayCharacter('k', '   ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '| |');
-// printableCharacters['l'] = new DisplayCharacter('l', '   ' + '\r\n' + 
-//                                                      '|  ' + '\r\n' + 
-//                                                      '|_ ');
-// // printableCharacters['m'] = new DisplayCharacter('m', ' _ ' + '\r\n' + 
-// //                                                      '|_|' + '\r\n' + 
-// //                                                      '| |');
-// printableCharacters['n'] = new DisplayCharacter('n', '   ' + '\r\n' + 
-//                                                      ' _ ' + '\r\n' + 
-//                                                      '| |');
-// printableCharacters['o'] = new DisplayCharacter('o', '   ' + '\r\n' + 
-//                                                      ' _ ' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['p'] = new DisplayCharacter('p', ' _ ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '|  ');
-// ambiguousCharacters['q'] = new DisplayCharacter('q', ' _ ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '  |');
-// printableCharacters['r'] = new DisplayCharacter('r', '   ' + '\r\n' + 
-//                                                      ' _ ' + '\r\n' + 
-//                                                      '|  ');
-// ambiguousCharacters['s'] = new DisplayCharacter('s', ' _ ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      ' _|');
-// printableCharacters['t'] = new DisplayCharacter('t', '   ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      '|_ ');
-// printableCharacters['u'] = new DisplayCharacter('u', '   ' + '\r\n' + 
-//                                                      '   ' + '\r\n' + 
-//                                                      '|_|');
-// ambiguousCharacters['v'] = new DisplayCharacter('v', '   ' + '\r\n' + 
-//                                                      '   ' + '\r\n' + 
-//                                                      '|_|');
-// // printableCharacters['w'] = new DisplayCharacter('w', ' _ ' + '\r\n' + 
-// //                                                      '|_|' + '\r\n' + 
-// //                                                      '| |');
-// // printableCharacters['x'] = new DisplayCharacter('x', ' _ ' + '\r\n' + 
-// //                                                      '|_|' + '\r\n' + 
-// //                                                      '| |');
-// ambiguousCharacters['y'] = new DisplayCharacter('y', '   ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '  |');
-// ambiguousCharacters['z'] = new DisplayCharacter('z', ' _ ' + '\r\n' + 
-//                                                      ' _|' + '\r\n' + 
-//                                                      '|_ ');
-// printableCharacters['0'] = new DisplayCharacter('0', ' _ ' + '\r\n' + 
-//                                                      '| |' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['1'] = new DisplayCharacter('1', '   ' + '\r\n' + 
-//                                                      '  |' + '\r\n' + 
-//                                                      '  |');
-// printableCharacters['2'] = new DisplayCharacter('2', ' _ ' + '\r\n' + 
-//                                                      ' _|' + '\r\n' + 
-//                                                      '|_ ');
-// printableCharacters['3'] = new DisplayCharacter('3', ' _ ' + '\r\n' + 
-//                                                      ' _|' + '\r\n' + 
-//                                                      ' _|');
-// printableCharacters['4'] = new DisplayCharacter('4', '   ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '  |');
-// printableCharacters['5'] = new DisplayCharacter('5', ' _ ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      ' _|');
-// printableCharacters['6'] = new DisplayCharacter('6', ' _ ' + '\r\n' + 
-//                                                      '|_ ' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['7'] = new DisplayCharacter('7', ' _ ' + '\r\n' + 
-//                                                      '  |' + '\r\n' + 
-//                                                      '  |');
-// printableCharacters['8'] = new DisplayCharacter('8', ' _ ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '|_|');
-// printableCharacters['9'] = new DisplayCharacter('9', ' _ ' + '\r\n' + 
-//                                                      '|_|' + '\r\n' + 
-//                                                      '  |');
-Object.keys(CharacterSets_1.printableCharacters.characterList).forEach(key => {
-    CharacterSets_1.printableCharacters.characterList[key].print();
+Object.keys(CharacterSet_1.printableCharacters.characterList).forEach(key => {
+    CharacterSet_1.printableCharacters.characterList[key].print();
     console.log('');
 });
-console.log(CharacterSets_1.printableCharacters.regExp().toString());
+console.log(CharacterSet_1.printableCharacters.regExp().toString());
+console.log('lol' + ': ' + Word_1.Word.canWriteWord('lol', CharacterSet_1.printableCharacters));
+console.log('test' + ': ' + Word_1.Word.canWriteWord('test', CharacterSet_1.printableCharacters));
+console.log('word' + ': ' + Word_1.Word.canWriteWord('word', CharacterSet_1.printableCharacters));
+console.log('great' + ': ' + Word_1.Word.canWriteWord('great', CharacterSet_1.printableCharacters));
+console.log('big' + ': ' + Word_1.Word.canWriteWord('big', CharacterSet_1.printableCharacters));
+console.log('england' + ': ' + Word_1.Word.canWriteWord('england', CharacterSet_1.printableCharacters));
+console.log('freedom' + ': ' + Word_1.Word.canWriteWord('freedom', CharacterSet_1.printableCharacters));
+console.log('fill' + ': ' + Word_1.Word.canWriteWord('fill', CharacterSet_1.printableCharacters));
+let lol = new Word_1.Word('lol', CharacterSet_1.printableCharacters);
+lol.printWord();
+let word = new Word_1.Word('word', CharacterSet_1.printableCharacters);
+word.printWord();
 //# sourceMappingURL=main.js.map
