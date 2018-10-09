@@ -1,20 +1,29 @@
-import {printableCharacters, ambiguousCharacters} from './CharacterSet';
+import { printableCharacters, ambiguousCharacters } from './CharacterSet';
 import { Word } from "./Word";
-console.log('main');
+import { readFileSync } from "fs";
 
-Object.keys(printableCharacters.characterList).forEach(key => {
-    printableCharacters.characterList[key].print();
-    console.log('');
+const words = readFileSync('./static/words_alpha.txt', 'utf8').split('\r\n');
+console.log(`Loaded ${words.length} words.`);
+
+let startTimeMillis: number = (new Date()).getTime();
+let longestWord: string = ''
+let longestWordLength: number = 0;
+words.forEach((word, index) => {
+    if (index % 10000 === 0) {
+        console.log(`Checked ${index} words, ${((new Date()).getTime() - startTimeMillis) / 1000}s elapsed`);
+    }
+    if (Word.canWriteWord(word, printableCharacters)) {
+        if (word.length > longestWordLength) {
+            longestWord = word;
+            longestWordLength = word.length;
+        }
+    }
 });
-console.log(printableCharacters.regExp().toString());
+console.log(`longest word is ${longestWord} with length ${longestWordLength}.  Printing...`);
+(new Word(longestWord, printableCharacters)).printWord();
 
-console.log('lol' + ': ' + Word.canWriteWord('lol', printableCharacters))
-console.log('test' + ': ' + Word.canWriteWord('test', printableCharacters))
-console.log('word' + ': ' + Word.canWriteWord('word', printableCharacters))
-console.log('great' + ': ' + Word.canWriteWord('great', printableCharacters))
-console.log('big' + ': ' + Word.canWriteWord('big', printableCharacters))
-console.log('england' + ': ' + Word.canWriteWord('england', printableCharacters))
-console.log('fill' + ': ' + Word.canWriteWord('fill', printableCharacters))
 
-let lol = new Word('lol', printableCharacters);
-lol.printWord();
+//Output: longest word is electroencephalographical with length 25.  Printing...
+//Output:  _     _              _        _  _     _        _     _  _           _    
+//        |_ |  |_  _ |_  _  _ |_  _  _ |_ |_||_||_||   _ |   _ |_||_||_||   _ |_||  
+//        |_ |_ |_ |_ |_ |  |_||_ | ||_ |_ |  | || ||_ |_||_||  | ||  | ||  |_ | ||_ 
